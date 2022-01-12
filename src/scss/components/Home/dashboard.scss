@@ -1,0 +1,73 @@
+.dashboard {
+    // border-right: 1px solid blue;
+    height: 100%;
+    width: $dashboard-width;
+    // position: relative;
+    // top: 0;
+    // left: 0;
+
+    &-logo {
+        // background-color: red;
+        @include flex(center, center);
+        padding: 32px 0 54px 0;
+        img {
+            width: 80px;
+            height: 64px;
+            object-fit: cover;
+        }
+    }
+
+    &-list {
+        // background-color: yellow;
+
+        &_item {
+            text-align: left;
+            display: flex;
+            align-items: center;
+            padding: 12px 0 12px 18px;
+        }
+        &_item:hover,
+        &_item.active {
+            background-color: $orangeColor;
+            color: white;
+            transition: all 0.25s ease;
+        }
+        img {
+            width: 20px;
+            height: 20px;
+            object-fit: cover;
+        }
+        &_content {
+            padding-left: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+        }
+        &_setting {
+            padding-left: 4px;
+            font-size: 20px;
+        }
+    }
+    &-logout {
+        position: absolute;
+        left: 12px;
+        bottom: 30px;
+
+        button {
+            @include flex(center, space-between);
+        }
+        &_content {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 24px;
+            color: $orangeColor;
+            padding-right: 56px;
+        }
+
+        &_icon {
+            font-size: 16px;
+            color: $orangeColor;
+            padding-left: 14.5px;
+        }
+    }
+}
