@@ -30,7 +30,7 @@
     &-right {
         @include flex(center, center);
         position: relative;
-        padding: 24px 62px 0 62px;
+        padding: 24px 62px 0 60px;
         // padding: 24px 24px 45px 24px;
         &_icon {
             width: 32px;

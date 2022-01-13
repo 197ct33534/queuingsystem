@@ -6,7 +6,7 @@ import Chart from "../../components/Chart";
 const ChartDashBoard = () => {
     return (
         <div className="mainHome">
-            <HeaderInfo title="Dashboard" />
+            <HeaderInfo title="Dashboard" bgcolorright="#fff" />
             <div className="mainHome-wapper">
                 <DashboardCenter />
                 <Chart />

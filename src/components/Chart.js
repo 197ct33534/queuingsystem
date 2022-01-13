@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import {
     LineChart,
     Line,
@@ -59,3 +59,6 @@ const Chart = () => {
                 </LineChart>
             </ResponsiveContainer>
         </div>
+    );
+};
+export default Chart;
