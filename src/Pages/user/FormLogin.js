@@ -8,6 +8,8 @@ const FormLogin = ({ account, password, email, resetpass }) => {
     const [name, setName] = useState("");
     const [pass, setPass] = useState("");
     const [isError, setisError] = useState(true);
+    const [path, setPath] = useState("");
+
     const [status, setStatus] = useState("Quên mật khẩu?");
     const handleSubmit = () => {
         const result = users.filter(
@@ -16,6 +18,7 @@ const FormLogin = ({ account, password, email, resetpass }) => {
 
         if (result.length > 0) {
             setisError(true);
+            setPath("/info");
             console.log("đăng nhập thành công");
         } else {
             setisError(false);
@@ -79,7 +82,7 @@ const FormLogin = ({ account, password, email, resetpass }) => {
                             </Link>
                         </div>
                         <div className="login-left_buttonLogIn">
-                            <Link to="/info">
+                            <Link to={path}>
                                 <Button
                                     onClick={handleSubmit}
                                     type="button"
