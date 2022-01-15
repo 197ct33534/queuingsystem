@@ -15,7 +15,71 @@
         margin-bottom: 20px;
     }
     &-statistical {
-        gap: 6px;
+        @include flex(center, space-between);
+    }
+
+    &-chart {
+        background-color: $white;
+        padding: 24px 24px 27px 27px;
+        border-radius: 12px;
+        position: relative;
+        &_heading {
+            @include flex(center, space-between);
+
+            h1 {
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 30px;
+                color: $backTittle;
+            }
+        }
+
+        &_warp {
+            @include flex(center, center);
+            position: relative;
+        }
+
+        &_span {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            color: $backTittle;
+            margin-right: 8px;
+        }
+        &_timer {
+            font-size: 14px;
+            line-height: 21px;
+            color: #a9a9b0;
+            margin-bottom: 20px;
+        }
+        &_quantily {
+            font-size: 12px;
+            line-height: 18px;
+            font-weight: 400;
+            color: $-gray-400;
+            position: absolute;
+            bottom: 0px;
+            left: 1px;
+        }
+        &_cross {
+            font-size: 14px;
+            line-height: 21px;
+            color: $-gray-400;
+            font-weight: 200;
+            position: absolute;
+            bottom: -9px;
+            left: 12px;
+        }
+
+        &_day {
+            font-size: 12px;
+            line-height: 18px;
+            font-weight: 400;
+            color: $-gray-400;
+            position: absolute;
+            bottom: -11px;
+            left: 17px;
+        }
     }
 }
 

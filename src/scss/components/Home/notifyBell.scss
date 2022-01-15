@@ -15,12 +15,7 @@
     background-color: $orangeColor2;
     cursor: pointer;
 }
-.notify.active {
-    opacity: 1;
-}
-.notify:hover {
-    opacity: 1;
-}
+
 .notify {
     cursor: pointer;
     width: $notifyBell-Width;
@@ -32,7 +27,6 @@
     position: absolute;
     top: 85px;
     right: 0;
-    opacity: 0;
     transition: all 0.1s linear;
 
     &-tittle {
@@ -78,8 +72,8 @@
 
         background-color: transparent;
         position: absolute;
-        right: 200px;
-        top: 34px;
+        right: 215px;
+        top: 54px;
         z-index: 999;
         cursor: pointer;
     }

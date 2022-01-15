@@ -2,10 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 // import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+
 import Layout from "./components/Layout";
 import "./Assets/boxicons-2.1.1/css/boxicons.min.css";
 import "./scss/index.scss";
+
+import reportWebVitals from "./reportWebVitals";
 ReactDOM.render(
     <React.StrictMode>
         <Layout />

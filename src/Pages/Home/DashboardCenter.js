@@ -1,4 +1,5 @@
 import React from "react";
+import Chart2 from "../../components/Chart2";
 
 const DashboardCenter = () => {
     const statisticals = [
@@ -37,7 +38,7 @@ const DashboardCenter = () => {
         <div className="dashboard-center">
             <h1 className="dashboard-center_title">Biểu đồ cấp số</h1>
 
-            <div className="dashboard-center-statistical grid-col-4">
+            <div className="dashboard-center-statistical ">
                 {statisticals.map((item, key) => (
                     <div className="statistical-card" key={key}>
                         <div className="statistical-card_heding">
@@ -66,6 +67,8 @@ const DashboardCenter = () => {
                     </div>
                 ))}
             </div>
+
+            <Chart2 />
         </div>
     );
 };

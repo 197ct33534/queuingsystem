@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import userAvatar from "../../Assets/images/userAvatar.png";
 import NotifyBell from "../../components/NotifyBell";
 import { notifyBells } from "../../Assets/fakeData/UserNotifyData";
@@ -6,16 +6,9 @@ import { Link } from "react-router-dom";
 const HeaderInfo = ({ title, avatar, fullname, bgcolorleft, bgcolorright }) => {
     const color1 = bgcolorleft ? bgcolorleft : "#F6F6F6";
     const color2 = bgcolorright ? bgcolorright : "#F6F6F6";
-    const [isHover, setisHover] = useState(false);
-    const notifyRef = useRef();
-    console.log(notifyRef.current);
-
-    const handleMouseOver = () => {
-        setisHover(true);
-    };
-
-    const handleMouseOut = () => {
-        setisHover(false);
+    const [active, setActive] = useState(false);
+    const handleClickBell = () => {
+        setActive(!active);
     };
 
     return (
@@ -31,9 +24,10 @@ const HeaderInfo = ({ title, avatar, fullname, bgcolorleft, bgcolorright }) => {
                 style={{ backgroundColor: color2 }}
             >
                 <span
-                    className="headerInfo-right_icon"
-                    onMouseOver={handleMouseOver}
-                    onMouseOut={handleMouseOut}
+                    className={`headerInfo-right_icon ${
+                        active ? "active" : ""
+                    }`}
+                    onClick={handleClickBell}
                 >
                     <i className="bx bxs-bell headerInfo-right_bell"></i>
                     <p className="notify-bridge"></p>
@@ -54,10 +48,7 @@ const HeaderInfo = ({ title, avatar, fullname, bgcolorleft, bgcolorright }) => {
                     </div>
                 </Link>
 
-                <NotifyBell
-                    users={notifyBells}
-                    active={isHover ? "active" : ""}
-                />
+                {active && <NotifyBell users={notifyBells} />}
             </div>
         </div>
     );

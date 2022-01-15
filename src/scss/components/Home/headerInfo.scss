@@ -38,8 +38,18 @@
             background-color: hsla(27, 100%, 95%, 1);
             cursor: pointer;
             margin-right: 10px;
+            border-radius: 50%;
             @include flex(center, center);
         }
+        &_icon.active &_bell {
+            color: $white;
+        }
+        &_icon.active {
+            background-color: $orangeColor;
+        }
+        // &_icon.active &_bell {
+        //     color: $white;
+        // }
         &_bell {
             color: $orangeColor3;
             font-size: 14px;

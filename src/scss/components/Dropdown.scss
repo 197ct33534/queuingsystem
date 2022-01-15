@@ -1,0 +1,48 @@
+.dropdown {
+    width: 106px;
+    user-select: none;
+    position: relative;
+
+    &-btn {
+        @include flex(center, space-between);
+        padding: 10px 12px 10px 12px;
+        border: 1.5px solid #d4d4d7;
+        border-radius: 8px;
+        color: #7e7d88;
+        font-size: 16px;
+        line-height: 24px;
+        text-transform: capitalize;
+        cursor: pointer;
+    }
+    &-icon {
+        color: $orangeColor;
+    }
+    &-content {
+        position: absolute;
+        top: 2;
+        left: 0;
+        padding: 8px 0px;
+        font-size: 16px;
+        line-height: 24px;
+        text-transform: capitalize;
+        color: $-gray-400;
+        width: 100%;
+        box-shadow: 0px 0px 6px #e7e9f2;
+        border-radius: 8px;
+        z-index: 100;
+    }
+    &-item {
+        padding: 10px 0 10px 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    &-item.active {
+        background-color: $-Orange-50;
+    }
+    &-item:hover {
+        background-color: $-Orange-50;
+
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+}
