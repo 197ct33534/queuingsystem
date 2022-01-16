@@ -6,6 +6,7 @@ import {
     dataFunc,
     option,
 } from "../../Assets/configChart/chartCircleData";
+import Datepicker from "../../components/Datepicker";
 const DashboardRight = () => {
     return (
         <div className="dashboard-right">
@@ -111,6 +112,7 @@ const DashboardRight = () => {
                     </div>
                 </div>
             ))}
+            <Datepicker />
         </div>
     );
 };

@@ -37,7 +37,7 @@ const HeaderInfo = ({ title, avatar, fullname, bgcolorleft, bgcolorright }) => {
                         <span className="headerInfo-avatar">
                             <img src={avatar ? avatar : userAvatar} alt="" />
                         </span>
-                        <div>
+                        <div className="headerInfo-warp">
                             <span className="headerInfo-right_hello">
                                 Xin chào
                             </span>

@@ -6,7 +6,7 @@
     // background-color: $grayFF;
     width: calc(#{$full-width} - #{$dashboard-width});
     &-wapper {
-        @include flex(center, space-between);
+        @include flex(unset, space-between);
     }
 }
 .grid {
