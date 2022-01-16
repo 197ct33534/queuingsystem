@@ -3,7 +3,14 @@ import userAvatar from "../../Assets/images/userAvatar.png";
 import NotifyBell from "../../components/NotifyBell";
 import { notifyBells } from "../../Assets/fakeData/UserNotifyData";
 import { Link } from "react-router-dom";
-const HeaderInfo = ({ title, avatar, fullname, bgcolorleft, bgcolorright }) => {
+const HeaderInfo = ({
+    title,
+    avatar,
+    fullname,
+    bgcolorleft,
+    bgcolorright,
+    task,
+}) => {
     const color1 = bgcolorleft ? bgcolorleft : "#F6F6F6";
     const color2 = bgcolorright ? bgcolorright : "#F6F6F6";
     const [active, setActive] = useState(false);
@@ -17,6 +24,12 @@ const HeaderInfo = ({ title, avatar, fullname, bgcolorleft, bgcolorright }) => {
                 className="headerInfo-left "
                 style={{ backgroundColor: color1 }}
             >
+                {" "}
+                {task && (
+                    <span className="headerInfo-left_task">
+                        {task.join(" > ")}
+                    </span>
+                )}
                 {title}
             </h1>
             <div

@@ -1,12 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import Logo from "../Assets/images/logo.png";
 import { navLists } from "../Assets/fakeData/dashBoardData";
 import Button from "./Button";
 
 const DashBoard = () => {
-    const path = window.location.pathname.slice(1);
-
     return (
         // <div className=" col l-2" >
         <div className="dashboard">
@@ -15,13 +13,18 @@ const DashBoard = () => {
             </div>
             <div className="dashboard-list">
                 {navLists.map((item) => (
-                    <Link
+                    <NavLink
                         to={item.path}
                         className={
-                            path === item.path
-                                ? "dashboard-list_item active"
-                                : "dashboard-list_item "
+                            ({ isActive }) =>
+                                isActive
+                                    ? "active dashboard-list_item"
+                                    : "dashboard-list_item "
+                            // path === item.path
+                            //     ? "dashboard-list_item active"
+                            //     : "dashboard-list_item "
                         }
+                        // activeClassName="active"
                         key={item.display}
                     >
                         <img src={item.icon} alt="" />
@@ -33,7 +36,7 @@ const DashBoard = () => {
                         ) : (
                             ""
                         )}
-                    </Link>
+                    </NavLink>
                 ))}
 
                 <div className="dashboard-logout">

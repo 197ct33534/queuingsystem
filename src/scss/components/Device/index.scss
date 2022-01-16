@@ -1,0 +1,57 @@
+.deviceManager {
+    width: calc(#{$full-width} - #{$dashboard-width});
+    background-color: $grayFF;
+}
+
+// controlDevice.js
+.controlDevice {
+    width: 100%;
+    padding: 0px 104px 0 24px;
+    @include flex(center, space-between);
+    &-warp {
+        @include flex(center, space-between);
+
+        &-item {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 24px;
+            color: $backTittle;
+            margin-right: 24px;
+            &_search {
+                flex: 1;
+                width: 300px;
+                height: 44px;
+                position: relative;
+                > input {
+                    width: 100%;
+                    height: 100%;
+                    border: 1.5px solid $border-color;
+                    border-radius: 8px;
+                    padding: 10px 16px 10px 12px;
+                    line-height: 22px;
+                    color: #a9a9b0;
+                }
+                > input::placeholder {
+                    line-height: 22px;
+                    color: #a9a9b0;
+                }
+                > i {
+                    font-size: 14px;
+                    color: $orangeColor;
+                    position: absolute;
+                    right: 17px;
+                    top: 15px;
+                }
+            }
+        }
+        &-item > .dropdown {
+            width: 300px;
+            height: 44px;
+            background-color: $white;
+
+            & > .dropdown-content {
+                background-color: $white;
+            }
+        }
+    }
+}

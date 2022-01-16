@@ -11,8 +11,11 @@
         line-height: 30px;
         font-weight: bold;
         padding-left: 24px;
-
         flex: 1;
+
+        &_task {
+            color: #7e7d88;
+        }
     }
     &-avatar {
         width: 40px;
