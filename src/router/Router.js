@@ -6,7 +6,7 @@ import Home from "../Pages/Home/Home";
 import Info from "../Pages/Home/Info";
 import ChartDashBoard from "../Pages/Home/ChartDashBoard";
 
-import DeviceManager from "../Pages/Device/DeviceManager"
+import DeviceManager from "../Pages/Device/DeviceManager";
 const Router = () => {
     return (
         <div className="grid wide">

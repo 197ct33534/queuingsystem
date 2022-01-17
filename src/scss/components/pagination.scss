@@ -1,6 +1,8 @@
 .pagination {
     margin: 29px 24px 24px 24px;
     width: 1112px;
+    position: absolute;
+    bottom: 25px;
     &-warp {
         @include flex(center, flex-end);
         > li {
@@ -22,5 +24,8 @@
         color: #7e7d88;
         font-weight: bold;
         font-size: 18px;
+    }
+    li:hover > &-icon {
+        color: #fff;
     }
 }
