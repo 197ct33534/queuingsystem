@@ -13,6 +13,10 @@ const DropDown = ({ selected, setSelected, options, up }) => {
         iconRef.current.classList.remove("bxs-up-arrow");
         iconRef.current.classList.add("bxs-down-arrow");
     };
+    const handleMouseLeave = () => {
+        handleRemoveIconUp();
+        setIsActive(false);
+    };
     return (
         <div className="dropdown">
             <div
@@ -29,7 +33,10 @@ const DropDown = ({ selected, setSelected, options, up }) => {
                 ></i>
             </div>
             {isActive && (
-                <div className="dropdown-content">
+                <div
+                    className="dropdown-content"
+                    onMouseLeave={handleMouseLeave}
+                >
                     {options.map((option) => (
                         <div
                             key={option}

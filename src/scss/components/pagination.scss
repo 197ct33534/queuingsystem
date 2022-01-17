@@ -1,8 +1,9 @@
 .pagination {
     margin: 29px 24px 24px 24px;
     width: 1112px;
-    position: absolute;
-    bottom: 25px;
+    position: fixed;
+    bottom: 0;
+
     &-warp {
         @include flex(center, flex-end);
         > li {

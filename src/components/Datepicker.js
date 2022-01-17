@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useRef, useEffect, useCallback, memo } from "react";
 
 const Datepicker = () => {
     const currentDateRef = useRef();
@@ -167,4 +167,4 @@ const Datepicker = () => {
     );
 };
 
-export default Datepicker;
+export default memo(Datepicker);

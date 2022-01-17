@@ -7,6 +7,8 @@ import Info from "../Pages/Home/Info";
 import ChartDashBoard from "../Pages/Home/ChartDashBoard";
 
 import DeviceManager from "../Pages/Device/DeviceManager";
+import AddDevice from "../Pages/Device/AddDevice";
+
 const Router = () => {
     return (
         <div className="grid wide">
@@ -18,6 +20,7 @@ const Router = () => {
                     ></Route>
                     <Route path="info" element={<Info />}></Route>
                     <Route path="equipment" element={<DeviceManager />}></Route>
+                    <Route path="add" element={<AddDevice />}></Route>
                 </Route>
                 <Route path="login" element={<PageLogin />}></Route>
                 <Route path="forgotPass" element={<PageForgot />}></Route>

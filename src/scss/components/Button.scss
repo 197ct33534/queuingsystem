@@ -46,9 +46,9 @@ $dark: #a9a9b0;
     }
 
     &--warning--outline {
-        background-color: transparent;
-        border: 2px solid $warning;
-        color: $warning;
+        background-color: $warning;
+        border: 2px solid $primary;
+        color: $primary;
     }
 
     &--danger--outline {

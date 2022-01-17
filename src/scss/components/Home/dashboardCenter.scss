@@ -37,6 +37,10 @@
         &_warp {
             @include flex(center, center);
             position: relative;
+
+            > .dropdown {
+                width: 106px;
+            }
         }
 
         &_span {
@@ -45,6 +49,7 @@
             line-height: 24px;
             color: $backTittle;
             margin-right: 8px;
+            white-space: nowrap;
         }
         &_timer {
             font-size: 14px;

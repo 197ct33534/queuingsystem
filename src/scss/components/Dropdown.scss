@@ -1,5 +1,5 @@
 .dropdown {
-    width: 106px;
+    width: 100%;
     user-select: none;
     position: relative;
     background-color: $white;
@@ -19,8 +19,7 @@
     }
     &-content {
         position: absolute;
-        // top: 0px;
-        // left: 0;
+        background-color: $white;
         padding: 8px 0px;
         font-size: 16px;
         line-height: 24px;

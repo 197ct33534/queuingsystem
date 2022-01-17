@@ -1,6 +1,42 @@
 .deviceManager {
     width: calc(#{$full-width} - #{$dashboard-width});
     background-color: $grayFF;
+    &-tittle {
+        padding-left: 24px;
+        color: $orangeColor;
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 36px;
+        margin-bottom: 16px;
+    }
+    &-add {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        right: 0;
+        background-color: $-Orange-50;
+        width: 80px;
+        height: 94px;
+        @include flex(center, space-around);
+        flex-direction: column;
+        color: $orangeColor;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 19px;
+        text-align: center;
+        padding: 4px 12px;
+        &_icon {
+            width: 28px;
+            height: 28px;
+            background-color: $orangeColor2;
+            border-radius: 5px;
+            color: $white;
+            font-size: 20px;
+            line-height: 24px;
+            text-align: center;
+            font-weight: bold;
+        }
+    }
 }
 
 // controlDevice.js

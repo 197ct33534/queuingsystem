@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import Pagination from "./Pagination";
 
 const Table = ({ titleHeaders, datas }) => {
     const keyDatas = Object.keys(datas[0]);
     const valuesTitleHeaders = Object.values(titleHeaders[0]);
-    const [currentPerPage, setCurrentPerPage] = useState(1);
-    const [numRowInPage] = useState(9);
 
     const handleClickWatchAdd = (key) => {
         let element = document.getElementsByClassName("colum-service-nowatch")[
@@ -14,25 +11,9 @@ const Table = ({ titleHeaders, datas }) => {
         ];
         element.classList.toggle("colum-service");
     };
-    // get current row
-    const indexOfLastRow = currentPerPage * numRowInPage;
-    const indexOfFirstRow = indexOfLastRow - numRowInPage;
-    const currentRows = datas.slice(indexOfFirstRow, indexOfLastRow);
-    const handleClickPagination = (num) => {
-        setCurrentPerPage(num);
-    };
-    const handleClickNextPagine = () => {
-        if (currentPerPage === Math.ceil(datas.length / numRowInPage))
-            setCurrentPerPage(1);
-        else setCurrentPerPage((prev) => prev + 1);
-    };
-    const handleClickPrevPagine = () => {
-        if (currentPerPage === 1)
-            setCurrentPerPage(Math.ceil(datas.length / numRowInPage));
-        else setCurrentPerPage((prev) => prev - 1);
-    };
+
     return (
-        <>
+        <div className="warp-table">
             <div className="table ">
                 <table>
                     <thead>
@@ -45,7 +26,7 @@ const Table = ({ titleHeaders, datas }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {currentRows.map((data, key) => (
+                        {datas.map((data, key) => (
                             <tr key={data.id}>
                                 {keyDatas.map((keyData, index) => (
                                     <th
@@ -73,10 +54,6 @@ const Table = ({ titleHeaders, datas }) => {
                                         {<p>{data[keyData]}</p>}
                                         {keyData === "service" && (
                                             <>
-                                                {/* <div className="service_hidden">
-                                                {data[keyData]}
-                                            </div> */}
-
                                                 <p
                                                     className="table-Link table-Link_watch"
                                                     onClick={() =>
@@ -108,15 +85,7 @@ const Table = ({ titleHeaders, datas }) => {
                     </tbody>
                 </table>
             </div>
-            <Pagination
-                totalDatas={datas.length}
-                numRowInPage={numRowInPage}
-                handleClickPagination={handleClickPagination}
-                currentPerPage={currentPerPage}
-                handleClickNextPagine={handleClickNextPagine}
-                handleClickPrevPagine={handleClickPrevPagine}
-            />
-        </>
+        </div>
     );
 };
 
