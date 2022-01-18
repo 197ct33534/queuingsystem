@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import DropDown from "../../components/DropDown";
+import { stateContent } from "../../Pages/Device/DeviceManager";
 const ControlDevice = () => {
-    const [selectedActive, setSelectedActive] = useState("Tất cả");
-    const [selectedConnect, setSelectedConect] = useState("Tất cả");
+    const state = useContext(stateContent);
     return (
         <div className="controlDevice">
             <div className="controlDevice-warp">
@@ -10,8 +10,8 @@ const ControlDevice = () => {
                     <div>Trạng thái hoạt động</div>
                     <DropDown
                         up
-                        selected={selectedActive}
-                        setSelected={setSelectedActive}
+                        selected={state.selectedActive}
+                        setSelected={state.setSelectedActive}
                         options={["Tất cả", "Hoạt động", "Ngừng hoạt dộng"]}
                     />
                 </div>
@@ -19,8 +19,8 @@ const ControlDevice = () => {
                     <div>Trạng thái kết nối</div>
                     <DropDown
                         up
-                        selected={selectedConnect}
-                        setSelected={setSelectedConect}
+                        selected={state.selectedConnect}
+                        setSelected={state.setSelectedConect}
                         options={["Tất cả", "Kết nối", "Mất kết nối"]}
                     />
                 </div>

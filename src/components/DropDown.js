@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 
 const DropDown = ({ selected, setSelected, options, up }) => {
     const [isActive, setIsActive] = useState(false);
+
     const iconRef = useRef();
     const handleAddIconUp = () => {
         if (up) {

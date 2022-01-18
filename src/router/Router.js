@@ -8,6 +8,8 @@ import ChartDashBoard from "../Pages/Home/ChartDashBoard";
 
 import DeviceManager from "../Pages/Device/DeviceManager";
 import AddDevice from "../Pages/Device/AddDevice";
+import DetailDevice from "../Pages/Device/DetailDevice";
+import UpdateDevice from "../Pages/Device/UpdateDevice";
 
 const Router = () => {
     return (
@@ -20,7 +22,14 @@ const Router = () => {
                     ></Route>
                     <Route path="info" element={<Info />}></Route>
                     <Route path="equipment" element={<DeviceManager />}></Route>
+
                     <Route path="add" element={<AddDevice />}></Route>
+                    <Route path="detail" element={<DetailDevice />}>
+                        <Route path=":id" element={<DetailDevice />} />
+                    </Route>
+                    <Route path="update" element={<UpdateDevice />}>
+                        <Route path=":id" element={<UpdateDevice />} />
+                    </Route>
                 </Route>
                 <Route path="login" element={<PageLogin />}></Route>
                 <Route path="forgotPass" element={<PageForgot />}></Route>
