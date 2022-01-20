@@ -22,7 +22,7 @@ const DetailDevice = () => {
                 task={["Thiết bi", "Danh sách thiết bị", ""]}
             />
             <div className="deviceManager-tittle">Quản lý thiết bị</div>
-            <div className="warp-table">
+            <div className="deviceManager-warp">
                 <div className="formAddDevice detailDevice">
                     <div className="detailDevice-title">Thông tin thiết bị</div>
                     <div className="grid-col-2 detailDevice-gap">

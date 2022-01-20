@@ -1,10 +1,11 @@
 .warp-table {
     position: relative;
+    margin: 16px 0px 24px 24px;
 }
 .table {
     width: $widthCardInfo;
     background-color: $white;
-    margin: 16px 24px 24px 24px;
+    // margin: 16px 24px 24px 24px;
     font-size: 14px;
     line-height: 21px;
     text-align: left;
@@ -41,7 +42,9 @@ thead {
 tr:nth-child(even) {
     background-color: #fff2e7;
 }
-
+tr {
+    height: 49px;
+}
 th {
     padding-left: 16px;
 }
@@ -72,17 +75,3 @@ th > span.active::before {
     text-overflow: ellipsis;
     border: unset;
 }
-// .colum-service-nowatch .service_hidden {
-//     width: 340px;
-//     padding: 0px 12px;
-//     white-space: unset;
-//     overflow: unset !important;
-//     position: absolute;
-//     z-index: 50;
-//     left: 0px;
-//     top: 0;
-//     display: none;
-// }
-// .service_hidden.active{
-//     display: block;
-// }

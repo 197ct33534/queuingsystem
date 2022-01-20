@@ -1,14 +1,3 @@
-export const tittleEquipments = [
-    {
-        id: "Mã thiết bị",
-        name: "Tên thiết bị",
-        ipAddress: "Địa chỉ IP",
-        active: "Trạng thái hoạt động",
-        connect: "Trạng thái kết nối",
-        service: "Dịch vụ sử dụng",
-    },
-];
-
 const Equip = [];
 
 for (let i = 1; i <= 100; i++) {

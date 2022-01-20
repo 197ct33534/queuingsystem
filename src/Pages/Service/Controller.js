@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import DropDown from "../../components/DropDown";
-import { stateContent } from "../../Pages/Device/DeviceManager";
-const ControlDevice = () => {
-    const state = useContext(stateContent);
+import { stateServiceContent } from "./ServiceManager";
+const Controller = () => {
+    const state = useContext(stateServiceContent);
     return (
-        <div className="controlDevice">
-            <div className="controlDevice-warp">
+        <div className="controlDevice controlService">
+            <div className="controlDevice-warp controlService-warp">
                 <div className="controlDevice-warp-item">
                     <div>Trạng thái hoạt động</div>
                     <DropDown
@@ -16,13 +16,18 @@ const ControlDevice = () => {
                     />
                 </div>
                 <div className="controlDevice-warp-item">
-                    <div>Trạng thái kết nối</div>
-                    <DropDown
-                        up
-                        selected={state.selectedConnect}
-                        setSelected={state.setSelectedConect}
-                        options={["Tất cả", "Kết nối", "Mất kết nối"]}
-                    />
+                    <div>Chọn thời gian</div>
+                    <div className="service-date-warp">
+                        <span className="service-date-item">
+                            <i className="bx bx-calendar"></i>
+                            <span>10/10/2021</span>
+                        </span>
+                        <i className="bx bx-caret-right service-date_iconRight"></i>
+                        <span className="service-date-item">
+                            <i className="bx bx-calendar"></i>
+                            <span>18/10/2021</span>
+                        </span>
+                    </div>
                 </div>
             </div>
             <div className="controlDevice-warp-item controlDevice-warp-search">
@@ -36,4 +41,4 @@ const ControlDevice = () => {
     );
 };
 
-export default ControlDevice;
+export default Controller;

@@ -1,47 +1,24 @@
 import React, { useState, createContext } from "react";
 import HeaderInfo from "../Home/HeaderInfo";
-import ControlDevice from "./ControlDevice";
+import Controller from "./Controller";
 import Table from "../../components/Table";
-import { Equipments } from "../../Assets/fakeData/equipData";
+import { serviceData } from "../../Assets/fakeData/ServiceData";
 import Pagination from "../../components/Pagination";
+
 import { Link } from "react-router-dom";
+export const stateServiceContent = createContext();
 
-export const stateContent = createContext();
-const DeviceManager = () => {
-    // localStorage data
-    const memory = localStorage.getItem("addDevice")
-        ? JSON.parse(localStorage.getItem("addDevice"))
-        : [];
-    const keyArray = Object.keys(Equipments[0]);
-    const dataLocalStorage = memory.map((item) => {
-        Object.keys(item).map((key) => {
-            if (!keyArray.includes(key)) {
-                delete item[key];
-            }
-            return item;
-        });
-        return item;
-    });
-
-    // state
+const ServiceManager = () => {
     const [selectedActive, setSelectedActive] = useState("Tất cả");
-    const [selectedConnect, setSelectedConect] = useState("Tất cả");
-
-    let Datas = [...Equipments, ...dataLocalStorage];
+    let Datas = [...serviceData];
     if (selectedActive !== "Tất cả") {
         if (selectedActive === "Hoạt động") {
-            Datas = Datas.filter((Equipment) => Equipment.active === true);
+            Datas = serviceData.filter((service) => service.active === true);
         } else {
-            Datas = Datas.filter((Equipment) => Equipment.active === false);
+            Datas = serviceData.filter((service) => service.active === false);
         }
     }
-    if (selectedConnect !== "Tất cả") {
-        if (selectedConnect === "Kết nối") {
-            Datas = Datas.filter((Equipment) => Equipment.connect === true);
-        } else {
-            Datas = Datas.filter((Equipment) => Equipment.connect === false);
-        }
-    }
+
     const [currentPerPage, setCurrentPerPage] = useState(1);
     const [numRowInPage] = useState(9);
 
@@ -57,7 +34,7 @@ const DeviceManager = () => {
         setCurrentPerPage(num);
     };
     const handleClickNextPagine = () => {
-        if (currentPerPage + 1 > Math.ceil(Datas.length / numRowInPage)) {
+        if (currentPerPage + 1 > Math.ceil(serviceData.length / numRowInPage)) {
             return;
         }
         setCurrentPerPage((prev) => prev + 1);
@@ -80,55 +57,44 @@ const DeviceManager = () => {
     };
 
     return (
-        <div className="deviceManager">
-            <HeaderInfo title={"Danh sách thiết bị"} task={["Thiết bị", ""]} />
-            <div className="deviceManager-tittle">Danh sách thiết bị</div>
-            <stateContent.Provider
+        <div className="ServiceManager">
+            <HeaderInfo title={"Danh sách dịch vụ"} task={["Dịch vụ", ""]} />
+            <div className="deviceManager-tittle">Quản lý dịch vụ</div>
+
+            <stateServiceContent.Provider
                 value={{
                     selectedActive,
-                    selectedConnect,
+
                     setSelectedActive,
-                    setSelectedConect,
                 }}
             >
                 {" "}
-                <ControlDevice />
-            </stateContent.Provider>
-
-            <div className="warp-table">
+                <Controller />
+            </stateServiceContent.Provider>
+            <div className="service-warp">
                 <Table
                     datas={currentRows}
-                    IsDetail
-                    pathDetail={"detail"}
-                    IsUpdate
-                    pathUpdate={"update"}
                     tittleHeaders={[
-                        "Mã thiết bị",
-                        "Tên thiết bị",
-                        "Địa chỉ IP",
+                        "Mã dịch vụ",
+                        "Tên dịch vụ",
+                        "Mô tả",
                         "Trạng thái hoạt động",
-                        "Trạng thái kết nối",
-                        "Dịch vụ sử dụng",
                     ]}
-                    keyDatas={[
-                        "id",
-                        "name",
-                        "ipAddress",
-                        "active",
-                        "connect",
-                        "service",
-                    ]}
+                    IsUpdate
+                    pathUpdate={"updateService"}
+                    IsDetail
+                    pathDetail={"detailService"}
+                    keyDatas={["id", "name", "des", "active"]}
                 />
-
-                <Link to="/add">
+                <Link to="/addService">
                     <div className="deviceManager-add">
                         <div className="deviceManager-add_icon">+</div>
-                        Thêm thiết bị
+                        Thêm dịch vụ
                     </div>
                 </Link>
             </div>
             <Pagination
-                totalDatas={Datas.length}
+                totalDatas={serviceData.length}
                 numRowInPage={numRowInPage}
                 handleClickPagination={handleClickPagination}
                 currentPerPage={currentPerPage}
@@ -141,4 +107,4 @@ const DeviceManager = () => {
     );
 };
 
-export default DeviceManager;
+export default ServiceManager;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DropDown from "../../components/DropDown";
 import Button from "../../components/Button";
 import { Link } from "react-router-dom";
+import DropDownSelect from "../../components/DropDownSelect";
 const FormAddDevice = ({ update, data }) => {
     const FillInfors = [
         { state: "id", display: "Mã thiết bị", type: "input" },
@@ -45,7 +46,7 @@ const FormAddDevice = ({ update, data }) => {
     ArryKeyState.map((key) => {
         return (ObjectKeyState[key] = "");
     });
-    console.log("objec", ObjectKeyState);
+
     const [fillState, setFillState] = useState(data ? data : ObjectKeyState);
     const handChange = (e, state) => {
         return setFillState((prev) => {
@@ -54,7 +55,7 @@ const FormAddDevice = ({ update, data }) => {
         });
     };
     fillState["typeDevice"] = selected;
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
         let memory = localStorage.getItem("addDevice")
             ? JSON.parse(localStorage.getItem("addDevice"))
             : [];
@@ -65,7 +66,7 @@ const FormAddDevice = ({ update, data }) => {
         memory.splice(0, 0, fillState);
         localStorage.setItem("addDevice", JSON.stringify(memory));
     };
-    console.log(fillState);
+
     return (
         <>
             <div className="formAddDevice">
@@ -77,21 +78,28 @@ const FormAddDevice = ({ update, data }) => {
                                 <div className="formAdd-Item_title">
                                     {fill.display}: <span>*</span>
                                 </div>
-                                {}
-
-                                <input
-                                    required
-                                    type={
-                                        fill.display === "Mật khẩu"
-                                            ? "password"
-                                            : "text"
-                                    }
-                                    value={fillState[fill.state]}
-                                    onChange={(e) => {
-                                        return handChange(e, fill.state);
-                                    }}
-                                    placeholder={`Nhập ${fill.display.toLowerCase()}`}
-                                />
+                                {update & (fill.state === "service") ? (
+                                    <DropDownSelect
+                                        data={[
+                                            ...fillState[fill.state].split(","),
+                                        ]}
+                                        placeholder="Tất cả"
+                                    />
+                                ) : (
+                                    <input
+                                        required
+                                        type={
+                                            fill.display === "Mật khẩu"
+                                                ? "password"
+                                                : "text"
+                                        }
+                                        value={fillState[fill.state]}
+                                        onChange={(e) => {
+                                            return handChange(e, fill.state);
+                                        }}
+                                        placeholder={`Nhập ${fill.display.toLowerCase()}`}
+                                    />
+                                )}
                             </div>
                         ) : (
                             <div className="formAdd-Item " key={key}>
@@ -114,7 +122,7 @@ const FormAddDevice = ({ update, data }) => {
                     Là trường thông tin bắt buộc
                 </div>
             </div>
-            <div className="formAddDevice-btn">
+            <div className="controll-btn">
                 <Link to="/equipment">
                     <Button
                         type="button"

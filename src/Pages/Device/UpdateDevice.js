@@ -12,7 +12,7 @@ const UpdateDevice = () => {
 
     return (
         <div>
-            <div className="deviceManager">
+            <div className="deviceManager updateDevice">
                 <HeaderInfo
                     title="Cập nhật thiết bị"
                     task={["Thiết bi", "Danh sách thiết bị", ""]}

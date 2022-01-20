@@ -10,7 +10,7 @@ import DeviceManager from "../Pages/Device/DeviceManager";
 import AddDevice from "../Pages/Device/AddDevice";
 import DetailDevice from "../Pages/Device/DetailDevice";
 import UpdateDevice from "../Pages/Device/UpdateDevice";
-
+import ServiceManager from "../Pages/Service/ServiceManager";
 const Router = () => {
     return (
         <div className="grid wide">
@@ -30,6 +30,8 @@ const Router = () => {
                     <Route path="update" element={<UpdateDevice />}>
                         <Route path=":id" element={<UpdateDevice />} />
                     </Route>
+
+                    <Route path="service" element={<ServiceManager />}></Route>
                 </Route>
                 <Route path="login" element={<PageLogin />}></Route>
                 <Route path="forgotPass" element={<PageForgot />}></Route>
