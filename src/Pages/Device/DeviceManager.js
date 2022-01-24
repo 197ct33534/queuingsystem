@@ -42,6 +42,7 @@ const DeviceManager = () => {
             Datas = Datas.filter((Equipment) => Equipment.connect === false);
         }
     }
+
     const [currentPerPage, setCurrentPerPage] = useState(1);
     const [numRowInPage] = useState(9);
 
@@ -52,32 +53,6 @@ const DeviceManager = () => {
     const indexOfLastRow = currentPerPage * numRowInPage;
     const indexOfFirstRow = indexOfLastRow - numRowInPage;
     const currentRows = Datas.slice(indexOfFirstRow, indexOfLastRow);
-    // events
-    const handleClickPagination = (num) => {
-        setCurrentPerPage(num);
-    };
-    const handleClickNextPagine = () => {
-        if (currentPerPage + 1 > Math.ceil(Datas.length / numRowInPage)) {
-            return;
-        }
-        setCurrentPerPage((prev) => prev + 1);
-        if (currentPerPage + 1 > maxPageNumberLimit) {
-            setmaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
-            setminPageNumberLimit(minPageNumberLimit + pageNumberLimit);
-        }
-    };
-
-    const handleClickPrevPagine = () => {
-        if (currentPerPage - 1 === 0) {
-            return;
-        }
-        setCurrentPerPage(currentPerPage - 1);
-
-        if ((currentPerPage - 1) % pageNumberLimit === 0) {
-            setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
-            setminPageNumberLimit(minPageNumberLimit - pageNumberLimit);
-        }
-    };
 
     return (
         <div className="deviceManager">
@@ -130,12 +105,13 @@ const DeviceManager = () => {
             <Pagination
                 totalDatas={Datas.length}
                 numRowInPage={numRowInPage}
-                handleClickPagination={handleClickPagination}
                 currentPerPage={currentPerPage}
-                handleClickNextPagine={handleClickNextPagine}
-                handleClickPrevPagine={handleClickPrevPagine}
                 maxPageNumberLimit={maxPageNumberLimit}
                 minPageNumberLimit={minPageNumberLimit}
+                pageNumberLimit={pageNumberLimit}
+                setCurrentPerPage={setCurrentPerPage}
+                setmaxPageNumberLimit={setmaxPageNumberLimit}
+                setminPageNumberLimit={setminPageNumberLimit}
             />
         </div>
     );

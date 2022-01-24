@@ -11,6 +11,9 @@ const Datepicker = () => {
             (year % 100 === 0 && year % 400 === 0)
         );
     };
+    const handleClickDatePick = (day) => {
+        console.log(day);
+    };
     const getFebDays = (year) => {
         return isLeapYear(year) ? 29 : 28;
     };
@@ -72,7 +75,12 @@ const Datepicker = () => {
             ) {
                 let day = document.createElement("div");
                 day.classList.add("calendar-number");
+
                 if (i >= first_day.getDay()) {
+                    day.addEventListener("click", () =>
+                        handleClickDatePick(i - first_day.getDay() + 1)
+                    );
+
                     day.innerHTML = `<span >${
                         i - first_day.getDay() + 1
                     } </span>`;
@@ -86,18 +94,25 @@ const Datepicker = () => {
                     }
                 } else if (i < first_day_ofMonth) {
                     day.classList.add("dis");
+                    day.addEventListener("click", () =>
+                        handleClickDatePick(
+                            day_ofMonth_prev - Number(first_day_ofMonth) + i + 1
+                        )
+                    );
                     day.innerHTML = `<span >${
                         day_ofMonth_prev - Number(first_day_ofMonth) + i + 1
                     } </span>`;
                 }
                 calendarRef.current.appendChild(day);
             }
+
             for (
                 let i = 1;
                 i <= 42 - (days_of_month[month] + first_day_ofMonth - 1);
                 i++
             ) {
                 let day = document.createElement("div");
+                day.addEventListener("click", () => handleClickDatePick(i));
                 day.classList.add("calendar-number");
                 day.classList.add("dis");
                 day.innerHTML = `<span >${i} </span>`;

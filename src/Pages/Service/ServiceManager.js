@@ -18,44 +18,15 @@ const ServiceManager = () => {
             Datas = serviceData.filter((service) => service.active === false);
         }
     }
-
     const [currentPerPage, setCurrentPerPage] = useState(1);
     const [numRowInPage] = useState(9);
 
     const [pageNumberLimit] = useState(5);
     const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
     const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
-    // get current row
     const indexOfLastRow = currentPerPage * numRowInPage;
     const indexOfFirstRow = indexOfLastRow - numRowInPage;
     const currentRows = Datas.slice(indexOfFirstRow, indexOfLastRow);
-    // events
-    const handleClickPagination = (num) => {
-        setCurrentPerPage(num);
-    };
-    const handleClickNextPagine = () => {
-        if (currentPerPage + 1 > Math.ceil(serviceData.length / numRowInPage)) {
-            return;
-        }
-        setCurrentPerPage((prev) => prev + 1);
-        if (currentPerPage + 1 > maxPageNumberLimit) {
-            setmaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
-            setminPageNumberLimit(minPageNumberLimit + pageNumberLimit);
-        }
-    };
-
-    const handleClickPrevPagine = () => {
-        if (currentPerPage - 1 === 0) {
-            return;
-        }
-        setCurrentPerPage(currentPerPage - 1);
-
-        if ((currentPerPage - 1) % pageNumberLimit === 0) {
-            setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
-            setminPageNumberLimit(minPageNumberLimit - pageNumberLimit);
-        }
-    };
-
     return (
         <div className="ServiceManager">
             <HeaderInfo title={"Danh sách dịch vụ"} task={["Dịch vụ", ""]} />
@@ -96,12 +67,13 @@ const ServiceManager = () => {
             <Pagination
                 totalDatas={serviceData.length}
                 numRowInPage={numRowInPage}
-                handleClickPagination={handleClickPagination}
                 currentPerPage={currentPerPage}
-                handleClickNextPagine={handleClickNextPagine}
-                handleClickPrevPagine={handleClickPrevPagine}
                 maxPageNumberLimit={maxPageNumberLimit}
                 minPageNumberLimit={minPageNumberLimit}
+                pageNumberLimit={pageNumberLimit}
+                setCurrentPerPage={setCurrentPerPage}
+                setmaxPageNumberLimit={setmaxPageNumberLimit}
+                setminPageNumberLimit={setminPageNumberLimit}
             />
         </div>
     );

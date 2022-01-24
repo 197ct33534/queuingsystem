@@ -94,16 +94,24 @@ const Table = ({
                                     </th>
                                 );
                             })}
-                            <th>
-                                <Link to={`/${pathDetail}/${data.id}`}>
-                                    <span className="table-Link">Chi tiết</span>
-                                </Link>
-                            </th>
-                            <th>
-                                <Link to={`/${pathUpdate}/${data.id}`}>
-                                    <span className="table-Link">Cập nhật</span>
-                                </Link>
-                            </th>
+                            {IsDetail && (
+                                <th>
+                                    <Link to={`/${pathDetail}/${data.id}`}>
+                                        <span className="table-Link">
+                                            Chi tiết
+                                        </span>
+                                    </Link>
+                                </th>
+                            )}
+                            {IsUpdate && (
+                                <th>
+                                    <Link to={`/${pathUpdate}/${data.id}`}>
+                                        <span className="table-Link">
+                                            Cập nhật
+                                        </span>
+                                    </Link>
+                                </th>
+                            )}
                         </tr>
                     ))}
                 </tbody>
