@@ -1,44 +1,42 @@
-import React, { useState, memo } from "react";
+import React, { useState, memo, useContext } from "react";
 import { users } from "../../Assets/fakeData/userData";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import { SetPass } from "./SetPass";
 import RestPass from "./ResetPass";
+
+import { LoginContext } from "../../components/Layout";
 const FormLogin = ({ account, password, email, resetpass }) => {
     const [name, setName] = useState("");
     const [pass, setPass] = useState("");
     const [isError, setisError] = useState(true);
-    const [path, setPath] = useState("");
-
+    // const [path, setPath] = useState("");
     const [status, setStatus] = useState("Quên mật khẩu?");
+
+    const data = useContext(LoginContext);
+
     const handleSubmit = () => {
         const result = users.filter(
             (user) => user.name === name && user.password === pass
         );
-
+        // thành công
         if (result.length > 0) {
+            data.setLoggedIn(true);
             setisError(true);
-            setPath("/info");
-            console.log("đăng nhập thành công");
+            // setPath("/info");
         } else {
+            data.setLoggedIn(false);
             setisError(false);
             setStatus("Sai mật khẩu hoặc tên đăng nhập");
-            console.log("đăng nhập thất bại");
         }
     };
     return (
         <>
-            {resetpass ? <RestPass /> : ""}
-            {email ? (
-                <>
-                    <SetPass />
-                </>
-            ) : (
-                ""
-            )}
+            {resetpass && <RestPass />}
+            {email && <SetPass />}
 
             <form action="" className="login-left_form">
-                {account ? (
+                {account && (
                     <>
                         <label htmlFor="" className="login-left_title">
                             Tên đăng nhập *
@@ -52,10 +50,8 @@ const FormLogin = ({ account, password, email, resetpass }) => {
                             onChange={(e) => setName(e.target.value)}
                         />
                     </>
-                ) : (
-                    ""
                 )}
-                {password ? (
+                {password && (
                     <>
                         <label htmlFor="" className="login-left_title">
                             Mật khẩu *
@@ -69,20 +65,18 @@ const FormLogin = ({ account, password, email, resetpass }) => {
                             onChange={(e) => setPass(e.target.value)}
                         />
                     </>
-                ) : (
-                    ""
                 )}
 
                 {password && account ? (
                     <>
                         <div className="login-left_error">
                             <i className="bx bx-error-circle"></i>
-                            <Link to="/forgotPass">
+                            <Link to="/user/forgotPass">
                                 <span>{status}</span>
                             </Link>
                         </div>
                         <div className="login-left_buttonLogIn">
-                            <Link to={path}>
+                            <Link to="/info">
                                 <Button
                                     onClick={handleSubmit}
                                     type="button"
@@ -101,7 +95,7 @@ const FormLogin = ({ account, password, email, resetpass }) => {
                 {isError ? (
                     ""
                 ) : (
-                    <Link to="/forgotPass">
+                    <Link to="/user/forgotPass">
                         <p className="login-left_error forgot">
                             Quên mật khẩu?
                         </p>

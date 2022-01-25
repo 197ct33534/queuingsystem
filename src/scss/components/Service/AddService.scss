@@ -53,15 +53,10 @@
         &-right {
             grid-column: span 6;
         }
-        :checked {
-            background-color: #4277ff;
-        }
+
         &-left {
             @include flex(center, flex-start);
-
-            input[type="checkbox"].checked {
-                background-color: #4277ff;
-            }
+            cursor: pointer;
         }
     }
 
@@ -81,6 +76,13 @@
         border: 1.5px solid #4277ff;
         border-radius: 4px;
         margin-right: 8px;
+
+        cursor: pointer;
+    }
+    input {
         outline: none;
+    }
+    &-checkbox:checked {
+        accent-color: #4277ff;
     }
 }

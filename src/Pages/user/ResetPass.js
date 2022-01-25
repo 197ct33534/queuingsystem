@@ -58,7 +58,7 @@ const ResetPass = () => {
                 ""
             )}
             <div className="warp-controler-btn center">
-                <Link to="/login">
+                <Link to="/user">
                     <Button
                         buttonSize="btn--large"
                         type="button"

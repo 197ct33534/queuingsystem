@@ -8,21 +8,17 @@ export const SetPass = () => {
 
     const handleSubmit = (e) => {
         const result = users.filter((user) => user.email === email);
-
+        // thành công
         if (result.length > 0) {
             setisError(false);
-            console.log("email chính xác");
         } else {
             e.preventDefault();
             setisError(true);
-
-            console.log("email hông chích xác");
         }
     };
     return (
         <div className="setpassword login-left_form">
             <h1>Đặt lại mật khẩu</h1>
-
             <label htmlFor="" className="login-left_title">
                 Vui lòng nhập email để đặt lại mật khẩu của bạn *
             </label>
@@ -41,7 +37,7 @@ export const SetPass = () => {
                 ""
             )}
             <div className="warp-controler-btn">
-                <Link to="/login">
+                <Link to="/user">
                     <Button
                         type="button"
                         buttonSize="btn--large"
@@ -50,7 +46,7 @@ export const SetPass = () => {
                         Hủy
                     </Button>
                 </Link>
-                <Link to="/newPass">
+                <Link to="/user/newPass">
                     <Button
                         type="button"
                         buttonSize="btn--large"

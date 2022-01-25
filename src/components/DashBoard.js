@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import Logo from "../Assets/images/logo.png";
 import { navLists } from "../Assets/fakeData/dashBoardData";
 import Button from "./Button";
-
+import { LoginContext } from "./Layout";
 const DashBoard = () => {
-    return (
-        // <div className=" col l-2" >
+    const data = useContext(LoginContext);
+
+    const handleLogout = (e) => {
+        data.setLoggedIn(false);
+    };
+
+    return data.loggedIn ? (
         <div className="dashboard">
             <div className="dashboard-logo">
                 <img src={Logo} alt="" />
@@ -15,16 +20,11 @@ const DashBoard = () => {
                 {navLists.map((item) => (
                     <NavLink
                         to={item.path}
-                        className={
-                            ({ isActive }) =>
-                                isActive
-                                    ? "active dashboard-list_item"
-                                    : "dashboard-list_item "
-                            // path === item.path
-                            //     ? "dashboard-list_item active"
-                            //     : "dashboard-list_item "
+                        className={({ isActive }) =>
+                            isActive
+                                ? "active dashboard-list_item"
+                                : "dashboard-list_item "
                         }
-                        // activeClassName="active"
                         key={item.display}
                     >
                         <img src={item.icon} alt="" />
@@ -40,7 +40,7 @@ const DashBoard = () => {
                 ))}
 
                 <div className="dashboard-logout">
-                    <Link to="/login">
+                    <Link to="" onClick={() => handleLogout()}>
                         <Button
                             buttonSize="btn--XL"
                             type="button"
@@ -55,7 +55,8 @@ const DashBoard = () => {
                 </div>
             </div>
         </div>
-        // </div>
+    ) : (
+        ""
     );
 };
 

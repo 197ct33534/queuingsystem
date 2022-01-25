@@ -74,9 +74,9 @@ const DeviceManager = () => {
                 <Table
                     datas={currentRows}
                     IsDetail
-                    pathDetail={"detail"}
+                    pathDetail={"equipment/detail"}
                     IsUpdate
-                    pathUpdate={"update"}
+                    pathUpdate={"equipment/update"}
                     tittleHeaders={[
                         "Mã thiết bị",
                         "Tên thiết bị",
@@ -95,7 +95,7 @@ const DeviceManager = () => {
                     ]}
                 />
 
-                <Link to="/add">
+                <Link to="/equipment/add">
                     <div className="deviceManager-add">
                         <div className="deviceManager-add_icon">+</div>
                         Thêm thiết bị

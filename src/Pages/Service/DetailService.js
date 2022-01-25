@@ -71,7 +71,7 @@ const DetailService = () => {
                                     </span>{" "}
                                     đến{" "}
                                     <span className="DetailService-number">
-                                        999
+                                        9999
                                     </span>
                                 </span>
 

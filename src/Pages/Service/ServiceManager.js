@@ -52,12 +52,12 @@ const ServiceManager = () => {
                         "Trạng thái hoạt động",
                     ]}
                     IsUpdate
-                    pathUpdate={"updateService"}
+                    pathUpdate={"service/update"}
                     IsDetail
-                    pathDetail={"detailService"}
+                    pathDetail={"service/detail"}
                     keyDatas={["id", "name", "des", "active"]}
                 />
-                <Link to="/addService">
+                <Link to="/service/add">
                     <div className="deviceManager-add">
                         <div className="deviceManager-add_icon">+</div>
                         Thêm dịch vụ
