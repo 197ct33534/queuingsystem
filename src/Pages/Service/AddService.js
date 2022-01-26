@@ -1,32 +1,43 @@
 import React, { useState } from "react";
 import HeaderInfo from "../Home/HeaderInfo";
 import Button from "../../components/Button";
-import { Link } from "react-router-dom";
-const AddService = ({ update }) => {
+import { Link, useParams } from "react-router-dom";
+import { serviceData } from "../../Assets/fakeData/ServiceData";
+const AddService = ({ pathCancel, pathSubmit, update }) => {
+    let data = {};
+    const { id } = useParams();
+    //update
+    if (update) {
+        data = serviceData.find((item) => id === String(item.id));
+    }
+    // add
     const handleSubmit = () => {
         let memory = localStorage.getItem("addService")
             ? JSON.parse(localStorage.getItem("addService"))
             : [];
 
         memory.splice(0, 0, { ...infoService, ...checkBox });
-
         localStorage.setItem("addService", JSON.stringify(memory));
     };
 
     const [infoService, setInfoService] = useState({
-        idService: "",
-        nameService: "",
-        descService: "",
-        fromIncrese: "0001",
-        toIncrese: "9999",
-        prefix: "0001",
-        surfix: "0001",
+        id: data.id ? data.id : "",
+        nameService: data.nameService ? data.nameService : "",
+        descService: data.descService ? data.descService : "",
+        fromIncrese: data.fromIncrese ? data.fromIncrese : "0001",
+        toIncrese: data.toIncrese ? data.toIncrese : "9999",
+        prefix: data.prefix ? data.prefix : "0001",
+        surfix: data.surfix ? data.surfix : "0001",
+        active: data.active ? data.active : true,
     });
+
     const [checkBox, stateCheckBox] = useState({
-        resetCheckbox: false,
-        prefixCheckbox: false,
-        surfixCheckbox: false,
-        fromIncreseCheckbox: false,
+        resetCheckbox: data.resetCheckbox ? data.resetCheckbox : false,
+        prefixCheckbox: data.prefixCheckbox ? data.prefixCheckbox : false,
+        surfixCheckbox: data.surfixCheckbox ? data.surfixCheckbox : false,
+        fromIncreseCheckbox: data.fromIncreseCheckbox
+            ? data.fromIncreseCheckbox
+            : false,
     });
     const handleChange = (evt) => {
         const value = evt.target.value;
@@ -62,7 +73,7 @@ const AddService = ({ update }) => {
         <div className="ServiceManager">
             <HeaderInfo
                 task={["Dịch vụ", "Danh sách dịch vụ", ""]}
-                title="Thêm dịch vụ"
+                title={update ? "Cập nhật" : "Thêm dịch vụ"}
             />
             <div className="deviceManager-tittle">Quản lý dịch vụ</div>
             <div className="AddService">
@@ -74,8 +85,8 @@ const AddService = ({ update }) => {
                         </div>
                         <input
                             type="text"
-                            placeholder="2001"
-                            name="idService"
+                            placeholder={data.id ? data.id : "2001"}
+                            name="id"
                             onChange={handleChange}
                         />
                     </div>
@@ -83,7 +94,11 @@ const AddService = ({ update }) => {
                         <div>Mô tả: </div>
                         <input
                             type="text"
-                            placeholder="Mô tả dịch vụ"
+                            placeholder={
+                                data.descService
+                                    ? data.nameService
+                                    : "Khám tim mạch"
+                            }
                             name="descService"
                             onChange={handleChange}
                         />
@@ -106,7 +121,6 @@ const AddService = ({ update }) => {
                         <input
                             type="checkbox"
                             className="AddService-checkbox"
-                            id="AddService-checkbox-autoIncrease"
                             name="fromIncreseCheckbox"
                             checked={checkBox.fromIncreseCheckbox}
                             onChange={handleChangeCheckbox}
@@ -119,7 +133,9 @@ const AddService = ({ update }) => {
                     <div className="AddService-checkboxItem-right">
                         <input
                             type="text"
-                            placeholder="0001"
+                            placeholder={
+                                data.fromIncrese ? data.fromIncrese : "0001"
+                            }
                             className="AddService-inputNumber"
                             name="fromIncrese"
                             onChange={handleChange}
@@ -127,7 +143,9 @@ const AddService = ({ update }) => {
                         đến
                         <input
                             type="text"
-                            placeholder="9999"
+                            placeholder={
+                                data.toIncrese ? data.toIncrese : "9999"
+                            }
                             className="AddService-inputNumber"
                             name="toIncrese"
                             onChange={handleChange}
@@ -137,7 +155,6 @@ const AddService = ({ update }) => {
                         <input
                             type="checkbox"
                             className="AddService-checkbox"
-                            id="AddService-checkbox-prefix"
                             name="prefixCheckbox"
                             checked={checkBox.prefixCheckbox}
                             onChange={handleChangeCheckbox}
@@ -149,7 +166,7 @@ const AddService = ({ update }) => {
                     <div className="AddService-checkboxItem-right">
                         <input
                             type="text"
-                            placeholder="0001"
+                            placeholder={data.prefix ? data.prefix : "0001"}
                             className="AddService-inputNumber"
                             name="prefix"
                             onChange={handleChange}
@@ -159,7 +176,6 @@ const AddService = ({ update }) => {
                         <input
                             type="checkbox"
                             className="AddService-checkbox"
-                            id="AddService-checkbox-surfix"
                             name="surfixCheckbox"
                             checked={checkBox.surfixCheckbox}
                             onChange={handleChangeCheckbox}
@@ -172,7 +188,7 @@ const AddService = ({ update }) => {
                     <div className="AddService-checkboxItem-right">
                         <input
                             type="text"
-                            placeholder="0001"
+                            placeholder={data.surfix ? data.surfix : "0001"}
                             className="AddService-inputNumber"
                             name="surfix"
                             onChange={handleChange}
@@ -182,7 +198,6 @@ const AddService = ({ update }) => {
                         <input
                             type="checkbox"
                             className="AddService-checkbox"
-                            id="AddService-checkbox-reset"
                             name="resetCheckbox"
                             checked={checkBox.resetCheckbox}
                             onChange={handleChangeCheckbox}
@@ -199,7 +214,7 @@ const AddService = ({ update }) => {
             </div>
 
             <div className="controll-btn">
-                <Link to="">
+                <Link to={pathCancel}>
                     <Button
                         type="button"
                         buttonStyle="btn--warning--outline"
@@ -208,13 +223,13 @@ const AddService = ({ update }) => {
                         Hủy bỏ
                     </Button>
                 </Link>
-                <Link to="" onClick={handleSubmit}>
+                <Link to={pathSubmit} onClick={handleSubmit}>
                     <Button
                         type="button"
                         buttonStyle="btn--primary--solid"
                         buttonSize="btn--large"
                     >
-                        {!update ? "Thêm dịch vụ" : "Cập nhật"}
+                        {update ? "Cập nhật" : "Thêm dịch vụ"}
                     </Button>
                 </Link>
             </div>

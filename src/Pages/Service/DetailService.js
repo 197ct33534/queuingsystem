@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 import HeaderInfo from "../Home/HeaderInfo";
 import Controller from "./Controller";
 import { useParams, Link } from "react-router-dom";
@@ -9,11 +9,23 @@ import Pagination from "../../components/Pagination";
 import Back from "../../Assets/images/back.png";
 const DetailService = () => {
     const { id } = useParams();
-    const data = serviceData.find((item) => id === item.id);
+    const data = serviceData.find((item) => id === String(item.id));
 
     const [selectedActive, setSelectedActive] = useState("Tất cả");
 
-    let Datas = [...serviceData];
+    let Datas = [];
+    for (let i = Number(data.fromIncrese); i <= Number(data.toIncrese); i++) {
+        Datas.push({
+            id: Number(id + "0000") + i,
+            status:
+                Math.floor(Math.random() * 10) > 6
+                    ? "Đang thực hiện"
+                    : Math.floor(Math.random() * 10) / 2 > 3
+                    ? "Đã hoàn thành"
+                    : "Vắng",
+        });
+    }
+
     const [currentPerPage, setCurrentPerPage] = useState(1);
     const [numRowInPage] = useState(8);
     const [pageNumberLimit] = useState(5);
@@ -49,13 +61,13 @@ const DetailService = () => {
                                     Tên dịch vụ:
                                 </span>
                                 <span className="DetailService-content">
-                                    {data.name}
+                                    {data.nameService}
                                 </span>
                                 <span className="DetailService-label">
                                     Mô tả:
                                 </span>
                                 <span className="DetailService-content">
-                                    {data.des}
+                                    {data.descService}
                                 </span>
                             </div>
                             <div className="DetailService-left_tittle">
@@ -67,11 +79,11 @@ const DetailService = () => {
                                 </span>
                                 <span className="DetailService-content">
                                     <span className="DetailService-number">
-                                        0001
-                                    </span>{" "}
-                                    đến{" "}
+                                        {data.fromIncrese}
+                                    </span>
+                                    đến
                                     <span className="DetailService-number">
-                                        9999
+                                        {data.toIncrese}
                                     </span>
                                 </span>
 
@@ -80,7 +92,7 @@ const DetailService = () => {
                                 </span>
                                 <span className="DetailService-content">
                                     <span className="DetailService-number">
-                                        0001
+                                        {data.prefix}
                                     </span>
                                 </span>
                             </div>
@@ -104,7 +116,7 @@ const DetailService = () => {
                             <Table
                                 datas={currentRows}
                                 tittleHeaders={["Số thứ tự", "Trạng thái"]}
-                                keyDatas={["id", "active"]}
+                                keyDatas={["id", "status"]}
                             />
                         </div>
                         <Pagination
@@ -121,7 +133,7 @@ const DetailService = () => {
                     </div>
                 </div>
                 <div className="DetailService-Link">
-                    <Link to="">
+                    <Link to={`/service/update/${id}`}>
                         <div className="deviceManager-add">
                             <div className="deviceManager-add_icon">
                                 {" "}
@@ -130,7 +142,7 @@ const DetailService = () => {
                             Cập nhật danh sách
                         </div>
                     </Link>
-                    <Link to="">
+                    <Link to="/service">
                         <div className="deviceManager-add">
                             <div className="deviceManager-add_icon">
                                 <img src={Back} alt="" />

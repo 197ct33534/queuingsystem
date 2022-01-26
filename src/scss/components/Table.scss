@@ -10,7 +10,7 @@
     line-height: 21px;
     text-align: left;
     color: $-gray-400;
-
+    border-radius: 12px;
     &-Link {
         color: #4277ff;
         text-decoration: underline;
@@ -62,7 +62,12 @@ th > span::before {
 th > span.active::before {
     background-color: #34cd26;
 }
-
+th > span.dis::before {
+    background-color: #6c7585;
+}
+th > span.doing::before {
+    background-color: #5490eb;
+}
 .colum-service-nowatch {
     width: 268px;
     position: relative;

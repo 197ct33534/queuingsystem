@@ -10,7 +10,11 @@ export const stateServiceContent = createContext();
 
 const ServiceManager = () => {
     const [selectedActive, setSelectedActive] = useState("Tất cả");
-    let Datas = [...serviceData];
+    // get addService from localStorage
+    const memory = localStorage.getItem("addService")
+        ? JSON.parse(localStorage.getItem("addService"))
+        : [];
+    let Datas = [...memory, ...serviceData];
     if (selectedActive !== "Tất cả") {
         if (selectedActive === "Hoạt động") {
             Datas = serviceData.filter((service) => service.active === true);
@@ -55,9 +59,9 @@ const ServiceManager = () => {
                     pathUpdate={"service/update"}
                     IsDetail
                     pathDetail={"service/detail"}
-                    keyDatas={["id", "name", "des", "active"]}
+                    keyDatas={["id", "nameService", "descService", "active"]}
                 />
-                <Link to="/service/add">
+                <Link to="add">
                     <div className="deviceManager-add">
                         <div className="deviceManager-add_icon">+</div>
                         Thêm dịch vụ

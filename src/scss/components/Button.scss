@@ -18,7 +18,7 @@ $dark: #a9a9b0;
     &--primary--solid {
         background-color: $primary;
         color: $white;
-        border: none;
+        border: 2px solid $primary;
     }
 
     &--warning--solid {
@@ -69,7 +69,12 @@ $dark: #a9a9b0;
         padding: 10px 20px;
         font-size: 18px;
     }
-
+    &--small {
+        // padding: 8px 40px;
+        min-width: 115px;
+        min-height: 48px;
+        font-size: 16px;
+    }
     &--large {
         // padding: 8px 40px;
         min-width: 162px;

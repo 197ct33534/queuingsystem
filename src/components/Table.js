@@ -50,7 +50,6 @@ const Table = ({
                                         ) : (
                                             ""
                                         )}
-
                                         {(keyData === "active") &
                                         (data[keyData] === false) ? (
                                             <span className="danger">
@@ -59,7 +58,6 @@ const Table = ({
                                         ) : (
                                             ""
                                         )}
-
                                         {(keyData === "connect") &
                                         (data[keyData] === false) ? (
                                             <span className="danger">
@@ -68,7 +66,6 @@ const Table = ({
                                         ) : (
                                             ""
                                         )}
-
                                         {(keyData === "connect") &
                                         (data[keyData] === true) ? (
                                             <span className="active">
@@ -77,8 +74,84 @@ const Table = ({
                                         ) : (
                                             ""
                                         )}
+                                        {
+                                            /* status of data service*/
+                                            (keyData === "status") &
+                                            (data[keyData] === "Vắng") ? (
+                                                <span className="dis">
+                                                    {"Vắng"}
+                                                </span>
+                                            ) : (
+                                                ""
+                                            )
+                                        }
+                                        {
+                                            /* status of data service*/
+                                            (keyData === "status") &
+                                            (data[keyData] ===
+                                                "Đã hoàn thành") ? (
+                                                <span className="active">
+                                                    {"Đã hoàn thành"}
+                                                </span>
+                                            ) : (
+                                                ""
+                                            )
+                                        }
 
-                                        {<p>{data[keyData]}</p>}
+                                        {
+                                            /* status of data service*/
+                                            (keyData === "status") &
+                                            (data[keyData] ===
+                                                "Đang thực hiện") ? (
+                                                <span className="doing">
+                                                    {"Đang thực hiện"}
+                                                </span>
+                                            ) : (
+                                                ""
+                                            )
+                                        }
+
+                                        {
+                                            /* status of data random*/
+                                            (keyData === "status") &
+                                            (data[keyData] === "Đang chờ") ? (
+                                                <span className="doing">
+                                                    {"Đang chờ"}
+                                                </span>
+                                            ) : (
+                                                ""
+                                            )
+                                        }
+                                        {
+                                            /* status of data random*/
+                                            (keyData === "status") &
+                                            (data[keyData] === "Đã sử dụng") ? (
+                                                <span className="dis">
+                                                    {"Đã sử dụng"}
+                                                </span>
+                                            ) : (
+                                                ""
+                                            )
+                                        }
+                                        {
+                                            /* status of data random*/
+                                            (keyData === "status") &
+                                            (data[keyData] === "Bỏ qua") ? (
+                                                <span className="danger">
+                                                    {"Bỏ qua"}
+                                                </span>
+                                            ) : (
+                                                ""
+                                            )
+                                        }
+
+                                        {
+                                            <p>
+                                                {keyData === "status"
+                                                    ? ""
+                                                    : data[keyData]}
+                                            </p>
+                                        }
                                         {keyData === "service" && (
                                             <>
                                                 <p

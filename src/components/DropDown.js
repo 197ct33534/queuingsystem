@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-const DropDown = ({ selected, setSelected, options, up }) => {
+const DropDown = ({ selected, setSelected, options, up, scroll }) => {
     const [isActive, setIsActive] = useState(false);
 
     const iconRef = useRef();
@@ -35,7 +35,8 @@ const DropDown = ({ selected, setSelected, options, up }) => {
             </div>
             {isActive && (
                 <div
-                    className="dropdown-content"
+                    className="dropdown-content "
+                    id={scroll && "scroll"}
                     onMouseLeave={handleMouseLeave}
                 >
                     {options.map((option) => (

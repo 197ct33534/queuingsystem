@@ -16,39 +16,10 @@ import AddService from "../Pages/Service/AddService";
 import DetailService from "../Pages/Service/DetailService";
 import ProtectedRouters from "../ProtectedRouters";
 
-// <div className="grid wide">
-//     <Routes>
-//         <Route path="/" element={<Home />}>
-//             <Route
-//                 path="dashboard"
-//                 element={<ChartDashBoard />}
-//             ></Route>
-//             <Route path="info" element={<Info />}></Route>
-//             <Route path="equipment" element={<DeviceManager />}>
-//                 <Route path=":detail" element={<DetailDevice />}>
-//                     <Route path=":id" element={<DetailDevice />} />
-//                 </Route>
-//             </Route>
+import RandomManager from "../Pages/Random/RandomManager";
+import AddRandom from "../Pages/Random/AddRandom";
+import RandomDetail from "../Pages/Device/RandomDetail";
 
-//             <Route path="add" element={<AddDevice />}></Route>
-//             <Route path="detail" element={<DetailDevice />}>
-//                 <Route path=":id" element={<DetailDevice />} />
-//             </Route>
-//             <Route path="update" element={<UpdateDevice />}>
-//                 <Route path=":id" element={<UpdateDevice />} />
-//             </Route>
-
-//             <Route path="service" element={<ServiceManager />}></Route>
-//             <Route path="addService" element={<AddService />}></Route>
-//             <Route path="detailService" element={<DetailService />}>
-//                 <Route path=":id" element={<DetailService />} />
-//             </Route>
-//         </Route>
-//         <Route path="login" element={<PageLogin />}></Route>
-//         <Route path="forgotPass" element={<PageForgot />}></Route>
-//         <Route path="newPass" element={<PageForgot restpass />} />
-//     </Routes>
-// </div>
 const Router = () => {
     let routes = useRoutes([
         { path: "/", element: <PageLogin /> },
@@ -73,6 +44,12 @@ const Router = () => {
                     children: [
                         { path: "add", element: <AddDevice /> },
                         {
+                            path: "detailRandom",
+                            children: [
+                                { path: ":id", element: <RandomDetail /> },
+                            ],
+                        },
+                        {
                             path: "update",
                             children: [
                                 { path: ":id", element: <UpdateDevice /> },
@@ -91,11 +68,30 @@ const Router = () => {
                 {
                     path: "/service",
                     children: [
-                        { path: "add", element: <AddService /> },
-                        // {
-                        //     path: "update",
-                        //     children: [{ path: ":id", element: <UpdateDevice /> }],
-                        // },
+                        {
+                            path: "add",
+                            element: (
+                                <AddService
+                                    pathCancel="/service"
+                                    pathSubmit="/service"
+                                />
+                            ),
+                        },
+                        {
+                            path: "update",
+                            children: [
+                                {
+                                    path: ":id",
+                                    element: (
+                                        <AddService
+                                            pathCancel="/service"
+                                            pathSubmit="/service"
+                                            update
+                                        />
+                                    ),
+                                },
+                            ],
+                        },
                         {
                             path: "detail",
                             children: [
@@ -103,6 +99,13 @@ const Router = () => {
                             ],
                         },
                         { path: "", element: <ServiceManager /> },
+                    ],
+                },
+                {
+                    path: "/randomNumber",
+                    children: [
+                        { path: "add", element: <AddRandom /> },
+                        { path: "", element: <RandomManager /> },
                     ],
                 },
             ],

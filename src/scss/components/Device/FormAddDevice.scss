@@ -30,8 +30,11 @@
     @include flex(center, center);
     margin: 24px 0 32px 0;
 
-    :first-child {
-        margin-right: 32px;
+    > a:first-child {
+        margin-right: 16px;
+    }
+    > a:last-child {
+        margin-left: 16px;
     }
 }
 .formAdd-warp {
