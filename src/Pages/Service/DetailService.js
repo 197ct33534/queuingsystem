@@ -26,6 +26,10 @@ const DetailService = () => {
         });
     }
 
+    if (selectedActive !== "Tất cả") {
+        Datas = Datas.filter((item) => item.status === selectedActive);
+    }
+
     const [currentPerPage, setCurrentPerPage] = useState(1);
     const [numRowInPage] = useState(8);
     const [pageNumberLimit] = useState(5);
@@ -109,7 +113,7 @@ const DetailService = () => {
                             <stateServiceContent.Provider
                                 value={{ selectedActive, setSelectedActive }}
                             >
-                                <Controller />
+                                <Controller detail />
                             </stateServiceContent.Provider>
                         </div>
                         <div className="DetailService-table">

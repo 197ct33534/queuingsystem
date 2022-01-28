@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import DropDown from "../../components/DropDown";
 import { stateServiceContent } from "./ServiceManager";
 // import Datepicker from "../../components/Datepicker";
-const Controller = () => {
+const Controller = ({ detail }) => {
     const state = useContext(stateServiceContent);
     return (
         <div className="controlDevice controlService">
@@ -13,7 +13,16 @@ const Controller = () => {
                         up
                         selected={state.selectedActive}
                         setSelected={state.setSelectedActive}
-                        options={["Tất cả", "Hoạt động", "Ngừng hoạt dộng"]}
+                        options={
+                            detail
+                                ? [
+                                      "Tất cả",
+                                      "Đã hoàn thành",
+                                      "Đang thực hiện",
+                                      "Vắng",
+                                  ]
+                                : ["Tất cả", "Hoạt động", "Ngừng hoạt dộng"]
+                        }
                     />
                 </div>
                 <div className="controlDevice-warp-item">
