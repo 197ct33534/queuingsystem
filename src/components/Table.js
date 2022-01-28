@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import FilterTable from "./FilterTable";
 const Table = ({
     datas, // mãng chứa các object:[{}]
     IsDetail, // mãng có cột chi tiết hay không : true or false
@@ -9,6 +10,11 @@ const Table = ({
     pathUpdate, //nếu có update thì đường dẫn để xem update: string
     tittleHeaders, // mãng chứa các tiêu đề : string[]
     keyDatas, // mãng chứa các key object datas:string[]
+    filter, // lọc ở đầu cột
+    onClickFilter,
+    state,
+    setState,
+    dataOrigin,
 }) => {
     const handleClickWatchAdd = (key) => {
         let element = document.getElementsByClassName("colum-service-nowatch")[
@@ -16,14 +22,45 @@ const Table = ({
         ];
         element.classList.toggle("colum-service");
     };
-
+    const handleOnMouseLeave = (key) => {
+        setState((prev) => ({ ...prev, [key]: false }));
+    };
     return (
         <div className="table ">
             <table>
                 <thead>
                     <tr>
                         {tittleHeaders.map((tittle, index) => (
-                            <th key={index}>{tittle}</th>
+                            <th key={index}>
+                                {tittle}
+                                {filter && (
+                                    <p
+                                        name={keyDatas[index]}
+                                        className="table-filter"
+                                        onClick={(e) =>
+                                            onClickFilter(keyDatas[index])
+                                        }
+                                    >
+                                        <i className="bx bxs-up-arrow"></i>
+                                        <i className="bx bxs-down-arrow"></i>
+                                    </p>
+                                )}
+                                {filter && state[keyDatas[index]] && (
+                                    <FilterTable
+                                        scroll
+                                        data={[
+                                            "Tất cả",
+                                            ...dataOrigin.map(
+                                                (item) => item[keyDatas[index]]
+                                            ),
+                                        ]}
+                                        state={state}
+                                        setState={setState}
+                                        keydata={keyDatas[index]}
+                                        handleOnMouseLeave={handleOnMouseLeave}
+                                    />
+                                )}
+                            </th>
                         ))}
                         {IsDetail && <th></th>}
                         {IsUpdate && <th></th>}

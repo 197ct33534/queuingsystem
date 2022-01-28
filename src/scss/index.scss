@@ -12,6 +12,7 @@
 @import "./components/Table";
 @import "./components/pagination";
 @import "./components/DropDownSelect";
+@import "./components/FilterTable";
 
 @import "./components/Home/dashboard";
 @import "./components/Home/Info";
@@ -29,3 +30,5 @@
 @import "./components/Service/AddService.scss";
 
 @import "./components/Random/ControlRan.scss";
+
+@import "./components/Report/ReportManager.scss";

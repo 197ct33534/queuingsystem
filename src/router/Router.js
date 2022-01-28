@@ -20,6 +20,8 @@ import RandomManager from "../Pages/Random/RandomManager";
 import AddRandom from "../Pages/Random/AddRandom";
 import RandomDetail from "../Pages/Device/RandomDetail";
 
+import ReportManager from "../Pages/Report/ReportManager";
+
 const Router = () => {
     let routes = useRoutes([
         { path: "/", element: <PageLogin /> },
@@ -101,12 +103,18 @@ const Router = () => {
                         { path: "", element: <ServiceManager /> },
                     ],
                 },
+                //randomNumber
                 {
                     path: "/randomNumber",
                     children: [
                         { path: "add", element: <AddRandom /> },
                         { path: "", element: <RandomManager /> },
                     ],
+                },
+                ///announce
+                {
+                    path: "/announce",
+                    element: <ReportManager />,
                 },
             ],
         },
