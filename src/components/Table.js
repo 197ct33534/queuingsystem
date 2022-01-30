@@ -47,7 +47,6 @@ const Table = ({
                                 )}
                                 {filter && state[keyDatas[index]] && (
                                     <FilterTable
-                                        scroll
                                         data={[
                                             "Tất cả",
                                             ...dataOrigin.map(

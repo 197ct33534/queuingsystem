@@ -1,8 +1,8 @@
 import React from "react";
 
 const FilterTable = ({
-    data,
-    keydata,
+    data, //data : [{}]
+    keydata, //
     state,
     setState,
     handleOnMouseLeave,

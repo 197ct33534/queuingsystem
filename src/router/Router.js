@@ -22,6 +22,13 @@ import RandomDetail from "../Pages/Device/RandomDetail";
 
 import ReportManager from "../Pages/Report/ReportManager";
 
+import Role from "../Pages/manage/Role/Role";
+import FormRole from "../Pages/manage/Role/FormRole";
+
+import AccountManager from "../Pages/manage/Account/AccountManager";
+import AddAccount from "../Pages/manage/Account/AddAccount";
+
+import UserManager from "../Pages/manage/User/UserManager";
 const Router = () => {
     let routes = useRoutes([
         { path: "/", element: <PageLogin /> },
@@ -115,6 +122,66 @@ const Router = () => {
                 {
                     path: "/announce",
                     element: <ReportManager />,
+                },
+                //manager
+                {
+                    path: "/manage",
+                    children: [
+                        {
+                            path: "role",
+
+                            children: [
+                                { path: "add", element: <FormRole /> },
+                                {
+                                    path: "update",
+                                    children: [
+                                        {
+                                            path: ":id",
+                                            element: (
+                                                <FormRole
+                                                    // pathCancel="/service"
+                                                    // pathSubmit="/service"
+                                                    update
+                                                />
+                                            ),
+                                        },
+                                    ],
+                                },
+                                { path: "", element: <Role /> },
+                            ],
+                        },
+                        {
+                            path: "account",
+                            children: [
+                                { path: "add", element: <AddAccount /> },
+                                { path: "", element: <AccountManager /> },
+                            ],
+                        },
+                        { path: "", element: <Role /> },
+                        {
+                            path: "user",
+
+                            children: [
+                                { path: "add", element: <FormRole /> },
+                                {
+                                    path: "update",
+                                    children: [
+                                        {
+                                            path: ":id",
+                                            element: (
+                                                <FormRole
+                                                    // pathCancel="/service"
+                                                    // pathSubmit="/service"
+                                                    update
+                                                />
+                                            ),
+                                        },
+                                    ],
+                                },
+                                { path: "", element: <UserManager /> },
+                            ],
+                        },
+                    ],
                 },
             ],
         },
