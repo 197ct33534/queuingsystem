@@ -4,7 +4,7 @@ import Router from "../router/Router";
 import DashBoard from "./DashBoard";
 export const LoginContext = createContext();
 const Layout = () => {
-    const [loggedIn, setLoggedIn] = useState(true);
+    const [loggedIn, setLoggedIn] = useState(false);
     return (
         <BrowserRouter>
             <LoginContext.Provider value={{ loggedIn, setLoggedIn }}>
